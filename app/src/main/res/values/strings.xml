@@ -1,4 +1,26 @@
 <resources>
     <string name="app_name">ToDo App</string>
     <string name="add_button">Add button</string>
+    <string name="search_action">Search action</string>
+    <string name="sort_action">sort_task</string>
+    <string name="delete_all_action">Delete all</string>
+    <string name="list_screen_title">Tasks</string>
+    <string name="search_placeholder">Search</string>
+    <string name="delete_icon">delete icon</string>
+    <string name="sad_icon">sad icon</string>
+    <string name="empty_content">No tasks found.</string>
+    <string name="new_task">New task</string>
+    <string name="back_icon">back icon</string>
+    <string name="add_task_action">add task</string>
+    <string name="close_action">close action</string>
+    <string name="delete_action">delete action</string>
+    <string name="update_action">update action</string>
+    <string name="drop_down_icon">drop down icon</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="edit">Edit</string>
+    <string name="all_tasks">all tasks</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="logo_icon">logo icon</string>
 </resources>

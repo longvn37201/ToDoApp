@@ -436,7 +436,7 @@ public final class DaggerToDoApplication_HiltComponents_SingletonC extends ToDoA
     }
 
     private SharedViewModel sharedViewModel() {
-      return new SharedViewModel(toDoRepositoryProvider.get());
+      return new SharedViewModel(toDoRepositoryProvider.get(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonC.applicationContextModule));
     }
 
     @SuppressWarnings("unchecked")

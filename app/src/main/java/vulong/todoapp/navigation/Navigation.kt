@@ -5,24 +5,32 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import vulong.todoapp.navigation.destionations.listComposable
+import vulong.todoapp.navigation.destionations.splashComposable
 import vulong.todoapp.navigation.destionations.taskComposable
-import vulong.todoapp.util.Constants.LIST_SCREEN
+import vulong.todoapp.ui.viewmodels.SharedViewModel
+import vulong.todoapp.util.Constants.SPLASH_SCREEN
 
 @Composable
 fun Navigation(
     navController: NavHostController,
+    sharedViewModel: SharedViewModel,
 ) {
 
-    val screen = remember(navController) {
-        Screens(navController = navController)
+    val direction = remember(navController) {
+        ScreenDirections(navController = navController)
     }
 
-    NavHost(navController = navController, startDestination = LIST_SCREEN) {
+    NavHost(navController = navController, startDestination = SPLASH_SCREEN) {
+        splashComposable(
+            navigateToListScreen = direction.splashToList
+        )
         listComposable(
-            navigateToTaskScreen = screen.task
+            sharedViewModel = sharedViewModel,
+            navigateToTaskScreen = direction.listToTask,
         )
         taskComposable(
-            navigateToListScreen = screen.list
+            sharedViewModel = sharedViewModel,
+            navigateToListScreen = direction.taskToList,
         )
     }
 

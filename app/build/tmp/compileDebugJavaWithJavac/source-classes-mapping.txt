@@ -55,6 +55,8 @@ vulong/todoapp/BuildConfig.java
  vulong.todoapp.BuildConfig
 hilt_aggregated_deps/_vulong_todoapp_ToDoApplication_GeneratedInjector.java
  hilt_aggregated_deps._vulong_todoapp_ToDoApplication_GeneratedInjector
+vulong/todoapp/data/repositories/DataStoreRepository_Factory.java
+ vulong.todoapp.data.repositories.DataStoreRepository_Factory
 hilt_aggregated_deps/_vulong_todoapp_di_DatabaseModule.java
  hilt_aggregated_deps._vulong_todoapp_di_DatabaseModule
 vulong/todoapp/ToDoApplication_HiltComponents.java
