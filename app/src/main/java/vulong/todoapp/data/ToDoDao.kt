@@ -11,7 +11,7 @@ interface ToDoDao {
     @Query("SELECT * FROM $DATABASE_TABLE WHERE id=:taskId ")
     fun getTask(taskId: Int): Flow<ToDoTask>
 
-    @Query("SELECT * FROM $DATABASE_TABLE ORDER BY id ASC")
+    @Query("SELECT * FROM $DATABASE_TABLE ORDER BY id DESC")
     fun getAllTask(): Flow<List<ToDoTask>>
 
     @Query("SELECT * FROM $DATABASE_TABLE ORDER BY CASE WHEN priority LIKE 'L%' THEN 1 WHEN priority LIKE 'M%' THEN 2 WHEN priority LIKE 'H%' THEN 3 END")

@@ -2375,6 +2375,7 @@ int string abc_shareactionprovider_share_with_application 0x7f0e0019
 int string abc_toolbar_collapse_description 0x7f0e001a
 int string add_button 0x7f0e001b
 int string add_task_action 0x7f0e001c
+int string added 0x7f0e008d
 int string all_tasks 0x7f0e001d
 int string androidx_startup 0x7f0e001e
 int string app_name 0x7f0e001f
@@ -2391,6 +2392,7 @@ int string close_action 0x7f0e0029
 int string close_drawer 0x7f0e002a
 int string close_sheet 0x7f0e002b
 int string default_error_message 0x7f0e002c
+int string delete 0x7f0e0090
 int string delete_action 0x7f0e002d
 int string delete_all_action 0x7f0e002e
 int string delete_icon 0x7f0e002f
@@ -2469,6 +2471,7 @@ int string new_task 0x7f0e0077
 int string no 0x7f0e0078
 int string not_selected 0x7f0e0079
 int string off 0x7f0e007a
+int string ok 0x7f0e008e
 int string on 0x7f0e007b
 int string password_toggle_content_description 0x7f0e007c
 int string path_password_eye 0x7f0e007d
@@ -2485,6 +2488,8 @@ int string status_bar_notification_info_overflow 0x7f0e0087
 int string tab 0x7f0e0088
 int string template_percent 0x7f0e0089
 int string title 0x7f0e008a
+int string undo 0x7f0e0091
+int string update 0x7f0e008f
 int string update_action 0x7f0e008b
 int string yes 0x7f0e008c
 int style AlertDialog_AppCompat 0x7f0f0000

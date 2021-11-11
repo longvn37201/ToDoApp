@@ -2,26 +2,26 @@ package vulong.todoapp.navigation
 
 import androidx.navigation.NavHostController
 import vulong.todoapp.util.Action
-import vulong.todoapp.util.Constants.LIST_SCREEN
+import vulong.todoapp.util.Constants.HOME_SCREEN
 import vulong.todoapp.util.Constants.SPLASH_SCREEN
 
 class ScreenDirections(navController: NavHostController) {
 
-    val splashToList: () -> Unit = {
-        navController.navigate("list/${Action.NO_ACTION.name}") {
+    val splashToHome: () -> Unit = {
+        navController.navigate("home/${Action.NO_ACTION.name}") {
             popUpTo(SPLASH_SCREEN) {
                 inclusive = true
             }
         }
     }
 
-    val listToTask: (Int) -> Unit = { taskId ->
+    val homeToTask: (Int) -> Unit = { taskId ->
         navController.navigate("task/$taskId")
     }
 
-    val taskToList: (Action) -> Unit = { action ->
-        navController.navigate("list/${action.name}") {
-            popUpTo(LIST_SCREEN) {
+    val taskToHome: (Action) -> Unit = { action ->
+        navController.navigate("home/${action.name}") {
+            popUpTo(HOME_SCREEN) {
                 inclusive = true
             }
         }

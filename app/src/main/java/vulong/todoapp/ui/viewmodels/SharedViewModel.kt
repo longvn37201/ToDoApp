@@ -1,6 +1,7 @@
 package vulong.todoapp.ui.viewmodels
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -10,18 +11,19 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import vulong.todoapp.R
 import vulong.todoapp.data.models.Priority
 import vulong.todoapp.data.models.ToDoTask
 import vulong.todoapp.data.repositories.ToDoRepository
-import vulong.todoapp.util.Action
 import vulong.todoapp.util.Constants.MAX_DESCRIPTION_LENGTH
+import vulong.todoapp.util.Constants.MAX_SEARCH_LENGTH
 import vulong.todoapp.util.Constants.MAX_TITLE_LENGTH
+import vulong.todoapp.util.Constants.TAG
 import vulong.todoapp.util.LoadingState
-import vulong.todoapp.util.SearchAppBarState
+import vulong.todoapp.util.SnackBarDetail
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,152 +32,99 @@ class SharedViewModel @Inject constructor(
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
-    var snackBarAction by mutableStateOf(Action.NO_ACTION)
-    var snackBarMessage by mutableStateOf("")
+    init {
+        getAllTasks()
+    }
 
-    var searchAppBarState by mutableStateOf(SearchAppBarState.CLOSED)
-    var searchTextState by mutableStateOf("")
+    var searchText by mutableStateOf("")
+    var firstTimeLoadDataState by mutableStateOf(LoadingState.LOADING)
 
-    var loadDataState by mutableStateOf(LoadingState.LOADING)
-    private val _allTasks = MutableStateFlow<List<ToDoTask>>(emptyList())
-    val allTasks: StateFlow<List<ToDoTask>> = _allTasks
+    var snackBarDetail: SnackBarDetail? by mutableStateOf(null)
+
+    private val _allTasks = MutableStateFlow<MutableList<ToDoTask>>(arrayListOf())
+    val allTasks get() = _allTasks.asStateFlow()
 
     private val _searchedTasks = MutableStateFlow<List<ToDoTask>>(emptyList())
-    val searchedTasks: StateFlow<List<ToDoTask>> = _searchedTasks
+    val searchedTasks = _searchedTasks.asStateFlow()
 
-    private val _selectedTask: MutableStateFlow<ToDoTask?> = MutableStateFlow(null)
-    val selectedTask: StateFlow<ToDoTask?> = _selectedTask
-    var id by mutableStateOf(0)
+    var selectedTask: ToDoTask? by mutableStateOf(null)
+    var id by mutableStateOf(-1)
     var title by mutableStateOf("")
     var description by mutableStateOf("")
     var priority by mutableStateOf(Priority.LOW)
 
-    var undoTask: ToDoTask? by mutableStateOf(null)
+    val tempDeleteTasks: MutableList<ToDoTask> by mutableStateOf(arrayListOf())
 
-    fun handleDatabaseActions(action: Action) {
-        when (action) {
-            Action.ADD -> {
-                addTask()
-            }
-            Action.UPDATE -> {
-                updateTask()
-            }
-            Action.DELETE -> {
-                deleteTask()
-            }
-            Action.DELETE_ALL -> {
-                deleteAllTask()
-            }
-            Action.UNDO -> {
-                undoTask()
-            }
-            else -> {
-            }
-        }
-    }
-
-    fun searchTasks(searchQuery: String) {
-        loadDataState = LoadingState.LOADING
-        try {
-            viewModelScope.launch {
-                repository.searchTasks(searchQuery = "%$searchQuery%").collect {
-                    _searchedTasks.value = it
-                    loadDataState = LoadingState.SUCCESS
-                }
-            }
-        } catch (e: Exception) {
-            loadDataState = LoadingState.ERROR
-        }
-        searchAppBarState = SearchAppBarState.TRIGGERED
-    }
-
-    fun getAllTasks() {
+    private fun getAllTasks() {
         try {
             viewModelScope.launch {
                 repository.getAllTask().collect {
-                    _allTasks.value = it
-                    loadDataState = LoadingState.SUCCESS
+                    _allTasks.value = it as MutableList<ToDoTask>
+                    firstTimeLoadDataState = LoadingState.SUCCESS
+                    Log.d(TAG, "getAllTasks:${_allTasks.value.size} ${allTasks.value.size} ${_allTasks.value}")
                 }
             }
         } catch (e: Exception) {
-            loadDataState = LoadingState.ERROR
+            firstTimeLoadDataState = LoadingState.ERROR
         }
     }
 
-    fun getSelectedTask(taskId: Int) {
-        viewModelScope.launch {
-            repository.getTask(taskId = taskId).collect {
-                _selectedTask.value = it
-                id = if (it != null) it.id else -1
-                title = if (it != null) it.title else ""
-                description = if (it != null) it.description else ""
-                priority = if (it != null) it.priority else Priority.LOW
+    fun addTask(isUndoDeleteTask: Boolean = false) {
+        Log.d(TAG, "addTask: undo")
+        viewModelScope.launch(IO) {
+            if (!isUndoDeleteTask) {
+                val newTask =
+                    ToDoTask(title = title, description = description, priority = priority)
+                repository.addTask(newTask)
+                snackBarDetail = SnackBarDetail(
+                    context.getString(R.string.added),
+                    newTask.title,
+                    context.getString(R.string.ok),
+                )
+            } else {
+                Log.d(TAG, "addTask: undo")
+                repository.addTask(selectedTask!!)
             }
+            //sau khi add, collect trong allAllTasks auto duoc goi lai
         }
     }
 
-    private fun addTask() {
+    fun updateTask() {
         viewModelScope.launch(IO) {
-            val todoTask = ToDoTask(
-                title = title,
-                description = description,
-                priority = priority
+            val newTask = ToDoTask(selectedTask!!.id, title, description, priority)
+            repository.updateTask(newTask)
+            snackBarDetail = SnackBarDetail(
+                context.getString(R.string.update),
+                newTask.title,
+                context.getString(R.string.ok),
             )
-            repository.addTask(
-                toDoTask = todoTask
-            )
-            snackBarAction = Action.ADD
-            snackBarMessage = todoTask.title
-        }
-        searchAppBarState = SearchAppBarState.CLOSED
-    }
-
-    private fun undoTask() {
-        viewModelScope.launch(IO) {
-            repository.addTask(
-                toDoTask = undoTask!!
-            )
+            //sau khi update, collect trong allAllTasks auto duoc goi lai
         }
     }
 
-    private fun updateTask() {
+    fun deleteSelectedTask() {
         viewModelScope.launch(IO) {
-            val todoTask = ToDoTask(
-                id = id,
-                title = title,
-                description = description,
-                priority = priority
+            repository.deleteTask(selectedTask!!)
+            snackBarDetail = SnackBarDetail(
+                context.getString(R.string.delete),
+                selectedTask?.title,
+                context.getString(R.string.undo),
             )
-            repository.updateTask(
-                toDoTask = todoTask
-            )
-            snackBarAction = Action.UPDATE
-            snackBarMessage = todoTask.title
+            //sau khi delete, collect trong allAllTasks auto duoc goi lai
         }
     }
 
-    private fun deleteTask() {
-        viewModelScope.launch(IO) {
-            val todoTask = ToDoTask(
-                id = id,
-                title = title,
-                description = description,
-                priority = priority
-            )
-            repository.deleteTask(
-                toDoTask = todoTask
-            )
-            snackBarAction = Action.DELETE
-            snackBarMessage = todoTask.title
-            undoTask = todoTask
-        }
-    }
-
-    private fun deleteAllTask() {
-        viewModelScope.launch(IO) {
-            repository.deleteAllTask()
-            snackBarAction = Action.DELETE_ALL
-            snackBarMessage = context.getString(R.string.all_tasks)
+    fun getTask(taskId: Int?) {
+        if (taskId == null || taskId == -1) {
+            selectedTask = null
+            title = ""
+            description = ""
+            priority = Priority.LOW
+        } else {
+            selectedTask = allTasks.value[taskId]
+            title = selectedTask!!.title
+            description = selectedTask!!.description
+            priority = selectedTask!!.priority
         }
     }
 
@@ -194,4 +143,11 @@ class SharedViewModel @Inject constructor(
             description = newDescription
         }
     }
+
+    fun onSearchChange(newSearch: String) {
+        if (newSearch.length <= MAX_SEARCH_LENGTH) {
+            searchText = newSearch
+        }
+    }
+
 }

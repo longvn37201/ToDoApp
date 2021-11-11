@@ -236,7 +236,7 @@ public final class ToDoDao_Impl implements ToDoDao {
 
   @Override
   public Flow<List<ToDoTask>> getAllTask() {
-    final String _sql = "SELECT * FROM todo_table ORDER BY id ASC";
+    final String _sql = "SELECT * FROM todo_table ORDER BY id DESC";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     return CoroutinesRoom.createFlow(__db, false, new String[]{"todo_table"}, new Callable<List<ToDoTask>>() {
       @Override

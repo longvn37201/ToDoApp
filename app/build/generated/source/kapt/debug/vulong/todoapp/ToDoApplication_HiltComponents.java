@@ -44,6 +44,7 @@ import dagger.hilt.migration.DisableInstallInCheck;
 import javax.inject.Singleton;
 import vulong.todoapp.di.DatabaseModule;
 import vulong.todoapp.ui.viewmodels.SharedViewModel_HiltModules;
+import vulong.todoapp.ui.viewmodels.Ver1ViewModel_HiltModules;
 
 public final class ToDoApplication_HiltComponents {
   private ToDoApplication_HiltComponents() {
@@ -142,7 +143,8 @@ public final class ToDoApplication_HiltComponents {
           HiltWrapper_ActivityRetainedComponentManager_LifecycleModule.class,
           SharedViewModel_HiltModules.KeyModule.class,
           ActivityCBuilderModule.class,
-          ViewModelCBuilderModule.class
+          ViewModelCBuilderModule.class,
+          Ver1ViewModel_HiltModules.KeyModule.class
       }
   )
   @ActivityRetainedScoped
@@ -179,7 +181,8 @@ public final class ToDoApplication_HiltComponents {
   @Subcomponent(
       modules = {
           HiltWrapper_HiltViewModelFactory_ViewModelModule.class,
-          SharedViewModel_HiltModules.BindsModule.class
+          SharedViewModel_HiltModules.BindsModule.class,
+          Ver1ViewModel_HiltModules.BindsModule.class
       }
   )
   @ViewModelScoped

@@ -11,7 +11,7 @@ public abstract interface ToDoDao {
     public abstract kotlinx.coroutines.flow.Flow<vulong.todoapp.data.models.ToDoTask> getTask(int taskId);
     
     @org.jetbrains.annotations.NotNull()
-    @androidx.room.Query(value = "SELECT * FROM todo_table ORDER BY id ASC")
+    @androidx.room.Query(value = "SELECT * FROM todo_table ORDER BY id DESC")
     public abstract kotlinx.coroutines.flow.Flow<java.util.List<vulong.todoapp.data.models.ToDoTask>> getAllTask();
     
     @org.jetbrains.annotations.NotNull()

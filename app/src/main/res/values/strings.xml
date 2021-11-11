@@ -14,7 +14,9 @@
     <string name="add_task_action">add task</string>
     <string name="close_action">close action</string>
     <string name="delete_action">delete action</string>
+    <string name="delete">Deleted</string>
     <string name="update_action">update action</string>
+    <string name="update">Updated</string>
     <string name="drop_down_icon">drop down icon</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
@@ -23,4 +25,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="logo_icon">logo icon</string>
+    <string name="added">Added</string>
+    <string name="ok">OK</string>
+    <string name="undo">UNDO</string>
 </resources>
