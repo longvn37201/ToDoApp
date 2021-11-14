@@ -30,8 +30,20 @@ fun HomeScreen(
         topBar = {
             HomeScreenAppBar(
                 navigateToSearchScreen = {
-                    sharedViewModel.snackBarDetail = null
+                    sharedViewModel.dismissSnackBar()
                     navigateToSearchScreen()
+                },
+                onSortByRecentClicked = {
+                    sharedViewModel.dismissSnackBar()
+                    sharedViewModel.isSortByPriority = false
+                },
+                onSortByPriorityClicked = {
+                    sharedViewModel.dismissSnackBar()
+                    sharedViewModel.isSortByPriority = true
+                },
+                onConfirmDeleteAll = {
+                    sharedViewModel.dismissSnackBar()
+                    sharedViewModel.tempDeleteAllTasks()
                 },
                 sharedViewModel = sharedViewModel
             )
@@ -41,14 +53,14 @@ fun HomeScreen(
             HomeScreenContent(
                 sharedViewModel = sharedViewModel,
                 navigateToTaskScreen = {
-                    sharedViewModel.snackBarDetail = null
+                    sharedViewModel.dismissSnackBar()
                     navigateToTaskScreen(it)
                 }
             )
         },
         floatingActionButton = {
             ListFAB(navigateToTaskScreen = {
-                sharedViewModel.snackBarDetail = null
+                sharedViewModel.dismissSnackBar()
                 navigateToTaskScreen(it)
             })
         }
@@ -81,18 +93,23 @@ fun CustomSnackBar(
 ) {
     LaunchedEffect(key1 = true) {
         val snackBarResult = scaffoldState.snackbarHostState.showSnackbar(
-            message = "${sharedViewModel.snackBarDetail?.title}: ${sharedViewModel.snackBarDetail?.message}",
+            message = "Deleted a task!",
             actionLabel = sharedViewModel.snackBarDetail?.action,
         )
         when (snackBarResult) {
             SnackbarResult.Dismissed -> {
+                if (sharedViewModel.snackBarDetail?.title == "Deleted all tasks") {
+                    sharedViewModel.deleteAllTasks()
+                }
                 sharedViewModel.snackBarDetail = null
             }
             SnackbarResult.ActionPerformed -> {
-                if (sharedViewModel.snackBarDetail?.title == "Deleted"){
+                if (sharedViewModel.snackBarDetail?.title == "Deleted") {
                     sharedViewModel.addTask(isUndoDeleteTask = true)
                 }
-                //todo delete_all
+                if (sharedViewModel.snackBarDetail?.title == "Deleted all tasks") {
+                    sharedViewModel.undoDeleteAllTasks()
+                }
                 sharedViewModel.snackBarDetail = null
             }
         }

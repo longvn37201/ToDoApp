@@ -23,9 +23,8 @@ import dagger.hilt.android.internal.modules.ApplicationContextModule_ProvideAppl
 import dagger.hilt.android.internal.modules.ApplicationContextModule_ProvideContextFactory;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.DoubleCheck;
-import dagger.internal.MapBuilder;
 import dagger.internal.Preconditions;
-import dagger.internal.SetBuilder;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import javax.inject.Provider;
@@ -37,8 +36,6 @@ import vulong.todoapp.di.DatabaseModule_ProvideDaoFactory;
 import vulong.todoapp.di.DatabaseModule_ProvideDatabaseFactory;
 import vulong.todoapp.ui.viewmodels.SharedViewModel;
 import vulong.todoapp.ui.viewmodels.SharedViewModel_HiltModules_KeyModule_ProvideFactory;
-import vulong.todoapp.ui.viewmodels.Ver1ViewModel;
-import vulong.todoapp.ui.viewmodels.Ver1ViewModel_HiltModules_KeyModule_ProvideFactory;
 
 @DaggerGenerated
 @SuppressWarnings({
@@ -391,7 +388,7 @@ public final class DaggerToDoApplication_HiltComponents_SingletonC extends ToDoA
 
     @Override
     public Set<String> getViewModelKeys() {
-      return SetBuilder.<String>newSetBuilder(2).add(SharedViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(Ver1ViewModel_HiltModules_KeyModule_ProvideFactory.provide()).build();
+      return Collections.<String>singleton(SharedViewModel_HiltModules_KeyModule_ProvideFactory.provide());
     }
 
     @Override
@@ -425,8 +422,6 @@ public final class DaggerToDoApplication_HiltComponents_SingletonC extends ToDoA
 
     private Provider<SharedViewModel> sharedViewModelProvider;
 
-    private Provider<Ver1ViewModel> ver1ViewModelProvider;
-
     private ViewModelCImpl(DaggerToDoApplication_HiltComponents_SingletonC singletonC,
         ActivityRetainedCImpl activityRetainedCImpl, SavedStateHandle savedStateHandleParam) {
       this.singletonC = singletonC;
@@ -444,20 +439,15 @@ public final class DaggerToDoApplication_HiltComponents_SingletonC extends ToDoA
       return new SharedViewModel(toDoRepositoryProvider.get(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonC.applicationContextModule));
     }
 
-    private Ver1ViewModel ver1ViewModel() {
-      return new Ver1ViewModel(toDoRepositoryProvider.get(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonC.applicationContextModule));
-    }
-
     @SuppressWarnings("unchecked")
     private void initialize(final SavedStateHandle savedStateHandleParam) {
       this.toDoRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<ToDoRepository>(singletonC, activityRetainedCImpl, viewModelCImpl, 1));
       this.sharedViewModelProvider = new SwitchingProvider<>(singletonC, activityRetainedCImpl, viewModelCImpl, 0);
-      this.ver1ViewModelProvider = new SwitchingProvider<>(singletonC, activityRetainedCImpl, viewModelCImpl, 2);
     }
 
     @Override
     public Map<String, Provider<ViewModel>> getHiltViewModelMap() {
-      return MapBuilder.<String, Provider<ViewModel>>newMapBuilder(2).put("vulong.todoapp.ui.viewmodels.SharedViewModel", (Provider) sharedViewModelProvider).put("vulong.todoapp.ui.viewmodels.Ver1ViewModel", (Provider) ver1ViewModelProvider).build();
+      return Collections.<String, Provider<ViewModel>>singletonMap("vulong.todoapp.ui.viewmodels.SharedViewModel", (Provider) sharedViewModelProvider);
     }
 
     private static final class SwitchingProvider<T> implements Provider<T> {
@@ -486,9 +476,6 @@ public final class DaggerToDoApplication_HiltComponents_SingletonC extends ToDoA
 
           case 1: // vulong.todoapp.data.repositories.ToDoRepository 
           return (T) viewModelCImpl.toDoRepository();
-
-          case 2: // vulong.todoapp.ui.viewmodels.Ver1ViewModel 
-          return (T) viewModelCImpl.ver1ViewModel();
 
           default: throw new AssertionError(id);
         }

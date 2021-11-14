@@ -1085,6 +1085,7 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_logo_app_background
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1722,14 +1723,13 @@ drawable design_snackbar_background
 drawable ic_clock_black_24dp
 drawable ic_filter_list
 drawable ic_keyboard_black_24dp
-drawable ic_launcher_background
-drawable ic_launcher_foreground
-drawable ic_logo
+drawable ic_logo_app_foreground
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_sad
+drawable ic_splash_screen
 drawable ic_vertical_menu
 drawable material_cursor_drawable
 drawable material_ic_calendar_black_24dp
@@ -2344,8 +2344,8 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
-mipmap ic_launcher
-mipmap ic_launcher_round
+mipmap ic_logo_app
+mipmap ic_logo_app_round
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -2396,6 +2396,7 @@ string default_error_message
 string delete
 string delete_action
 string delete_all_action
+string delete_all_task
 string delete_icon
 string description
 string drop_down_icon
@@ -2485,6 +2486,8 @@ string search_menu_title
 string search_placeholder
 string selected
 string sort_action
+string sort_by_most_recent
+string sort_by_priority
 string status_bar_notification_info_overflow
 string tab
 string template_percent

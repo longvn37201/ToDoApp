@@ -20,6 +20,4 @@ object Constants {
     const val MAX_DESCRIPTION_LENGTH = 1000
 
     const val SPLASH_SCREEN_DURATION = 3000L
-
-
 }

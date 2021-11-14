@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ToDo App</string>
+    <string name="app_name">Task</string>
     <string name="add_button">Add button</string>
     <string name="search_action">Search action</string>
     <string name="sort_action">sort_task</string>
@@ -15,6 +15,7 @@
     <string name="close_action">close action</string>
     <string name="delete_action">delete action</string>
     <string name="delete">Deleted</string>
+    <string name="delete_all_task">Deleted all tasks</string>
     <string name="update_action">update action</string>
     <string name="update">Updated</string>
     <string name="drop_down_icon">drop down icon</string>
@@ -28,4 +29,6 @@
     <string name="added">Added</string>
     <string name="ok">OK</string>
     <string name="undo">UNDO</string>
+    <string name="sort_by_most_recent">Sort by most recent</string>
+    <string name="sort_by_priority">Sort by priority</string>
 </resources>

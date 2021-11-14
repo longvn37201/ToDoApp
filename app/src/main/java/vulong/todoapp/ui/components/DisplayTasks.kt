@@ -63,7 +63,7 @@ fun TaskItem(
             Row() {
                 Text(
                     modifier = Modifier.weight(8f),
-                    text = toDoTask.title+"$taskIndex",
+                    text = toDoTask.title,
                     color = MaterialTheme.colors.taskItemTextColor,
                     style = MaterialTheme.typography.h5,
                     fontWeight = FontWeight.Bold,

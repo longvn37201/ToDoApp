@@ -24,15 +24,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import vulong.todoapp.R
-import vulong.todoapp.data.models.Priority
 import vulong.todoapp.ui.components.ConfirmDialog
-import vulong.todoapp.ui.components.PriorityItem
+import vulong.todoapp.ui.components.SortItem
 import vulong.todoapp.ui.theme.*
 import vulong.todoapp.ui.viewmodels.SharedViewModel
 
 @Composable
 fun HomeScreenAppBar(
     navigateToSearchScreen: () -> Unit,
+    onSortByRecentClicked: () -> Unit,
+    onSortByPriorityClicked: () -> Unit,
+    onConfirmDeleteAll: () -> Unit,
     sharedViewModel: SharedViewModel,
 ) {
     var openDialog by remember {
@@ -45,7 +47,7 @@ fun HomeScreenAppBar(
             openDialog = openDialog,
             closeDialog = { openDialog = false },
             onConfirmClicked = {
-                //todo delete all task
+                onConfirmDeleteAll()
             }
         )
     }
@@ -53,35 +55,22 @@ fun HomeScreenAppBar(
         onSearchClicked = {
             navigateToSearchScreen()
         },
-        onSortClicked = {},
+        onSortByPriorityClicked = onSortByPriorityClicked,
+        onSortByRecentClicked = onSortByRecentClicked,
+        isSortByPriority = sharedViewModel.isSortByPriority,
         onDeleteAllClicked = {
             openDialog = true
         },
     )
-    //move searchscre
-//        else -> {
-//            SearchAppBar(
-//                text = sharedViewModel.searchText,
-//                onTextChange = {
-//                    sharedViewModel.searchText = it
-//                },
-//                onBackClicked = {
-//                    sharedViewModel.searchAppBarState =
-//                        SearchAppBarState.CLOSED
-//                    sharedViewModel.searchText = ""
-//                },
-//                onSearchClicked = {
-//                    //todo viewmodel search task
-//                },
-//            )
-//        }
 
 }
 
 @Composable
 fun DefaultListAppBar(
     onSearchClicked: () -> Unit,
-    onSortClicked: (Priority) -> Unit,
+    onSortByRecentClicked: () -> Unit,
+    onSortByPriorityClicked: () -> Unit,
+    isSortByPriority: Boolean,
     onDeleteAllClicked: () -> Unit,
 ) {
     TopAppBar(
@@ -95,8 +84,10 @@ fun DefaultListAppBar(
         actions = {
             ListAppBarActions(
                 onSearchClicked = onSearchClicked,
-                onSortClicked = onSortClicked,
-                onDeleteAllClicked = onDeleteAllClicked,
+                onSortByRecentClicked = onSortByRecentClicked,
+                onSortByPriorityClicked = onSortByPriorityClicked,
+                isSortByPriority = isSortByPriority,
+                onDeleteAllClicked = onDeleteAllClicked
             )
         }
     )
@@ -105,11 +96,17 @@ fun DefaultListAppBar(
 @Composable
 fun ListAppBarActions(
     onSearchClicked: () -> Unit,
-    onSortClicked: (Priority) -> Unit,
+    onSortByRecentClicked: () -> Unit,
+    onSortByPriorityClicked: () -> Unit,
     onDeleteAllClicked: () -> Unit,
+    isSortByPriority: Boolean
 ) {
     SearchAction(onSearchClicked = onSearchClicked)
-    SortAction(onSortClicked = onSortClicked)
+    SortAction(
+        onSortByPriorityClicked = onSortByPriorityClicked,
+        onSortByRecentClicked = onSortByRecentClicked,
+        isSortByPriority =isSortByPriority
+    )
     DeleteAllAction(onDeleteAllClicked = onDeleteAllClicked)
 }
 
@@ -128,7 +125,9 @@ fun SearchAction(
 
 @Composable
 fun SortAction(
-    onSortClicked: (Priority) -> Unit,
+    onSortByRecentClicked: () -> Unit,
+    onSortByPriorityClicked: () -> Unit,
+    isSortByPriority: Boolean,
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
@@ -146,26 +145,24 @@ fun SortAction(
             DropdownMenuItem(
                 onClick = {
                     isExpanded = false
-                    onSortClicked(Priority.LOW)
+                    onSortByRecentClicked()
                 }
             ) {
-                PriorityItem(priority = Priority.LOW)
+                SortItem(
+                    title = stringResource(R.string.sort_by_most_recent),
+                    isSelected = !isSortByPriority,
+                )
             }
             DropdownMenuItem(
                 onClick = {
                     isExpanded = false
-                    onSortClicked(Priority.HIGH)
+                    onSortByPriorityClicked()
                 }
             ) {
-                PriorityItem(priority = Priority.HIGH)
-            }
-            DropdownMenuItem(
-                onClick = {
-                    isExpanded = false
-                    onSortClicked(Priority.NONE)
-                }
-            ) {
-                PriorityItem(priority = Priority.NONE)
+                SortItem(
+                    title = stringResource(R.string.sort_by_priority),
+                    isSelected = isSortByPriority,
+                )
             }
         }
     }

@@ -7,6 +7,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -24,23 +25,24 @@ fun HomeScreenContent(
     sharedViewModel: SharedViewModel,
     navigateToTaskScreen: (taskId: Int) -> Unit,
 ) {
-
+    val allTasks =
+        if (sharedViewModel.isSortByPriority) sharedViewModel.allTasksByPriority.collectAsState().value
+        else sharedViewModel.allTasksByRecent.collectAsState().value
     when (sharedViewModel.firstTimeLoadDataState) {
         LoadingState.LOADING -> {
             LoadingContent()
         }
         LoadingState.SUCCESS -> {
-            if (sharedViewModel.allTasks.value.isEmpty()) {
+            if (allTasks.isEmpty()) {
                 EmptyContent()
             } else {
                 DisplayTasks(
-                    toDoTasks = sharedViewModel.allTasks.value,
+                    toDoTasks = allTasks,
                     navigate = navigateToTaskScreen
                 )
             }
         }
         LoadingState.ERROR -> {
-            //Todo first loading err
         }
     }
 

@@ -21,7 +21,6 @@ import vulong.todoapp.data.repositories.ToDoRepository
 import vulong.todoapp.util.Constants.MAX_DESCRIPTION_LENGTH
 import vulong.todoapp.util.Constants.MAX_SEARCH_LENGTH
 import vulong.todoapp.util.Constants.MAX_TITLE_LENGTH
-import vulong.todoapp.util.Constants.TAG
 import vulong.todoapp.util.LoadingState
 import vulong.todoapp.util.SnackBarDetail
 import javax.inject.Inject
@@ -33,19 +32,24 @@ class SharedViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        getAllTasks()
+        getAllTasksByRecent()
+        getAllTasksByPriority()
     }
+
+    var isSortByPriority by mutableStateOf(false)
 
     var searchText by mutableStateOf("")
     var firstTimeLoadDataState by mutableStateOf(LoadingState.LOADING)
 
     var snackBarDetail: SnackBarDetail? by mutableStateOf(null)
 
-    private val _allTasks = MutableStateFlow<MutableList<ToDoTask>>(arrayListOf())
-    val allTasks get() = _allTasks.asStateFlow()
+    private val _allTasksByRecent = MutableStateFlow<MutableList<ToDoTask>>(arrayListOf())
+    val allTasksByRecent = _allTasksByRecent.asStateFlow()
 
-    private val _searchedTasks = MutableStateFlow<List<ToDoTask>>(emptyList())
-    val searchedTasks = _searchedTasks.asStateFlow()
+    private val _allTasksByPriority = MutableStateFlow<MutableList<ToDoTask>>(arrayListOf())
+    val allTasksByPriority = _allTasksByPriority.asStateFlow()
+
+    val searchedTasks = MutableStateFlow<MutableList<ToDoTask>>(arrayListOf())
 
     var selectedTask: ToDoTask? by mutableStateOf(null)
     var id by mutableStateOf(-1)
@@ -53,15 +57,15 @@ class SharedViewModel @Inject constructor(
     var description by mutableStateOf("")
     var priority by mutableStateOf(Priority.LOW)
 
-    val tempDeleteTasks: MutableList<ToDoTask> by mutableStateOf(arrayListOf())
+    private var tempDeleteAllTasks: MutableList<ToDoTask> by mutableStateOf(arrayListOf())
 
-    private fun getAllTasks() {
+    private fun getAllTasksByRecent() {
         try {
             viewModelScope.launch {
                 repository.getAllTask().collect {
-                    _allTasks.value = it as MutableList<ToDoTask>
+                    _allTasksByRecent.value = it as MutableList<ToDoTask>
                     firstTimeLoadDataState = LoadingState.SUCCESS
-                    Log.d(TAG, "getAllTasks:${_allTasks.value.size} ${allTasks.value.size} ${_allTasks.value}")
+                    searchTasks()
                 }
             }
         } catch (e: Exception) {
@@ -69,20 +73,36 @@ class SharedViewModel @Inject constructor(
         }
     }
 
+
+    private fun getAllTasksByPriority() {
+        viewModelScope.launch {
+            repository.getByHighPriority().collect {
+                _allTasksByPriority.value = it as MutableList<ToDoTask>
+            }
+        }
+    }
+
+    fun searchTasks() {
+        val temp = mutableListOf<ToDoTask>()
+        _allTasksByRecent.value.forEach {
+            if (
+                searchText.trim().isNotEmpty()
+                && (it.title.contains(searchText) || it.description.contains(searchText))
+            ) {
+                temp.add(it)
+            }
+        }
+        searchedTasks.value = temp
+        Log.d("longvn", "searchTasks: ${searchedTasks.value}")
+    }
+
     fun addTask(isUndoDeleteTask: Boolean = false) {
-        Log.d(TAG, "addTask: undo")
         viewModelScope.launch(IO) {
             if (!isUndoDeleteTask) {
                 val newTask =
                     ToDoTask(title = title, description = description, priority = priority)
                 repository.addTask(newTask)
-                snackBarDetail = SnackBarDetail(
-                    context.getString(R.string.added),
-                    newTask.title,
-                    context.getString(R.string.ok),
-                )
             } else {
-                Log.d(TAG, "addTask: undo")
                 repository.addTask(selectedTask!!)
             }
             //sau khi add, collect trong allAllTasks auto duoc goi lai
@@ -93,14 +113,42 @@ class SharedViewModel @Inject constructor(
         viewModelScope.launch(IO) {
             val newTask = ToDoTask(selectedTask!!.id, title, description, priority)
             repository.updateTask(newTask)
-            snackBarDetail = SnackBarDetail(
-                context.getString(R.string.update),
-                newTask.title,
-                context.getString(R.string.ok),
-            )
             //sau khi update, collect trong allAllTasks auto duoc goi lai
         }
     }
+
+    fun tempDeleteAllTasks() {
+        tempDeleteAllTasks.addAll(_allTasksByRecent.value)
+        if (isSortByPriority) {
+            _allTasksByPriority.value = arrayListOf()
+        } else {
+            _allTasksByRecent.value = arrayListOf()
+        }
+        snackBarDetail = SnackBarDetail(
+            context.getString(R.string.delete_all_task),
+            "",
+            context.getString(R.string.undo),
+        )
+    }
+
+    fun deleteAllTasks() {
+        viewModelScope.launch(IO) {
+            repository.deleteAllTask()
+            tempDeleteAllTasks = arrayListOf()
+        }
+    }
+
+    fun undoDeleteAllTasks() {
+        snackBarDetail = null
+        if (isSortByPriority) {
+            _allTasksByPriority.value.addAll(tempDeleteAllTasks)
+        } else {
+            _allTasksByRecent.value.addAll(tempDeleteAllTasks)
+        }
+        tempDeleteAllTasks.clear()
+        searchTasks()
+    }
+
 
     fun deleteSelectedTask() {
         viewModelScope.launch(IO) {
@@ -114,22 +162,38 @@ class SharedViewModel @Inject constructor(
         }
     }
 
-    fun getTask(taskId: Int?) {
-        if (taskId == null || taskId == -1) {
+    fun getTask(taskIndex: Int?) {
+        if (taskIndex == null || taskIndex == -1) {
             selectedTask = null
             title = ""
             description = ""
             priority = Priority.LOW
         } else {
-            selectedTask = allTasks.value[taskId]
+            if (isSortByPriority) selectedTask = allTasksByPriority.value[taskIndex]
+            if (!isSortByPriority) selectedTask = allTasksByRecent.value[taskIndex]
+
+            selectedTask =
+                if (searchedTasks.value.isNotEmpty()) {
+                    searchedTasks.value[taskIndex]
+                } else {
+                    if (isSortByPriority) allTasksByPriority.value[taskIndex]
+                    else allTasksByRecent.value[taskIndex]
+                }
             title = selectedTask!!.title
             description = selectedTask!!.description
             priority = selectedTask!!.priority
         }
     }
 
+    fun dismissSnackBar() {
+        if (snackBarDetail?.title == context.getString(R.string.delete_all_task)) {
+            deleteAllTasks()
+        }
+        snackBarDetail = null
+    }
+
     fun validateFields(): Boolean {
-        return title.isNotEmpty() && description.isNotEmpty()
+        return title.trim().isNotEmpty() && description.trim().isNotEmpty()
     }
 
     fun onTitleChange(newTitle: String) {
@@ -147,6 +211,7 @@ class SharedViewModel @Inject constructor(
     fun onSearchChange(newSearch: String) {
         if (newSearch.length <= MAX_SEARCH_LENGTH) {
             searchText = newSearch
+            searchTasks()
         }
     }
 

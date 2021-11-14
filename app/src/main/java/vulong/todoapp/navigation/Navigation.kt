@@ -19,6 +19,7 @@ import vulong.todoapp.util.Constants.SEARCH_SCREEN
 import vulong.todoapp.util.Constants.SPLASH_SCREEN
 import vulong.todoapp.util.Constants.TASK_SCREEN
 
+
 @Composable
 fun Navigation(
     sharedViewModel: SharedViewModel = hiltViewModel()
@@ -26,7 +27,10 @@ fun Navigation(
 
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = SPLASH_SCREEN) {
+    NavHost(
+        navController = navController,
+        startDestination = if (android.os.Build.VERSION.SDK_INT < 31) SPLASH_SCREEN else HOME_SCREEN
+    ) {
 
         composable(
             route = SPLASH_SCREEN,
@@ -59,6 +63,9 @@ fun Navigation(
         composable(
             route = HOME_SCREEN,
         ) {
+            LaunchedEffect(key1 = true, block = {
+                sharedViewModel.searchedTasks.value = arrayListOf()
+            })
             HomeScreen(
                 sharedViewModel = sharedViewModel,
                 navigateToSearchScreen = {
@@ -76,11 +83,11 @@ fun Navigation(
                 navArgument(Constants.TASK_ARGUMENT_KEY) { type = NavType.IntType }
             )
         ) { navBackStackEntry ->
-            val taskId = navBackStackEntry.arguments?.getInt(Constants.TASK_ARGUMENT_KEY)
+            val taskIndex = navBackStackEntry.arguments?.getInt(Constants.TASK_ARGUMENT_KEY)
 
             //fix crash khi xoa index cuoi, se goi getTask 3 lan neu k co launch effect
             LaunchedEffect(key1 = true, block = {
-                sharedViewModel.getTask(taskId = taskId)
+                sharedViewModel.getTask(taskIndex = taskIndex)
             })
             TaskScreen(
                 sharedViewModel,

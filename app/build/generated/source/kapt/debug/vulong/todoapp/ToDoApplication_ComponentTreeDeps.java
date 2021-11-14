@@ -38,8 +38,6 @@ import hilt_aggregated_deps._vulong_todoapp_ToDoApplication_GeneratedInjector;
 import hilt_aggregated_deps._vulong_todoapp_di_DatabaseModule;
 import hilt_aggregated_deps._vulong_todoapp_ui_viewmodels_SharedViewModel_HiltModules_BindsModule;
 import hilt_aggregated_deps._vulong_todoapp_ui_viewmodels_SharedViewModel_HiltModules_KeyModule;
-import hilt_aggregated_deps._vulong_todoapp_ui_viewmodels_Ver1ViewModel_HiltModules_BindsModule;
-import hilt_aggregated_deps._vulong_todoapp_ui_viewmodels_Ver1ViewModel_HiltModules_KeyModule;
 
 @ComponentTreeDeps(
     rootDeps = _vulong_todoapp_ToDoApplication.class,
@@ -80,8 +78,6 @@ import hilt_aggregated_deps._vulong_todoapp_ui_viewmodels_Ver1ViewModel_HiltModu
         _vulong_todoapp_di_DatabaseModule.class,
         _vulong_todoapp_MainActivity_GeneratedInjector.class,
         _vulong_todoapp_ToDoApplication_GeneratedInjector.class,
-        _vulong_todoapp_ui_viewmodels_Ver1ViewModel_HiltModules_BindsModule.class,
-        _vulong_todoapp_ui_viewmodels_Ver1ViewModel_HiltModules_KeyModule.class,
         _vulong_todoapp_ui_viewmodels_SharedViewModel_HiltModules_BindsModule.class,
         _vulong_todoapp_ui_viewmodels_SharedViewModel_HiltModules_KeyModule.class
     }
