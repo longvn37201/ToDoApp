@@ -14,8 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import vulong.todoapp.data.models.ToDoTask
-import vulong.todoapp.ui.theme.*
+import vulong.todoapp.ui.theme.LARGE_PADDING
+import vulong.todoapp.ui.theme.PRIORITY_INDICATOR_SIZE
+import vulong.todoapp.ui.theme.taskItemTextColor
 
 
 @Composable
@@ -23,7 +26,9 @@ fun DisplayTasks(
     toDoTasks: List<ToDoTask>,
     navigate: (taskId: Int) -> Unit,
 ) {
-    LazyColumn() {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
+    ) {
         itemsIndexed(
             items = toDoTasks,
             itemContent = { index, task ->
@@ -51,9 +56,9 @@ fun TaskItem(
                     navigate(taskIndex)
                 }
             ),
-        color = MaterialTheme.colors.taskItemBackgroundColor,
+//        color = MaterialTheme.colors.taskItemBackgroundColor,
         shape = RectangleShape,
-        elevation = TASK_ITEM_ELEVATION,
+        elevation = 0.dp,
     ) {
         Column(
             modifier = Modifier

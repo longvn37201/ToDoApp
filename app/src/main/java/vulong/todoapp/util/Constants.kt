@@ -19,5 +19,5 @@ object Constants {
     const val MAX_SEARCH_LENGTH = 100
     const val MAX_DESCRIPTION_LENGTH = 1000
 
-    const val SPLASH_SCREEN_DURATION = 3000L
+    const val SPLASH_SCREEN_DURATION = 2000L
 }

@@ -27,7 +27,7 @@ public final class Constants {
     public static final int MAX_TITLE_LENGTH = 25;
     public static final int MAX_SEARCH_LENGTH = 100;
     public static final int MAX_DESCRIPTION_LENGTH = 1000;
-    public static final long SPLASH_SCREEN_DURATION = 3000L;
+    public static final long SPLASH_SCREEN_DURATION = 2000L;
     
     private Constants() {
         super();

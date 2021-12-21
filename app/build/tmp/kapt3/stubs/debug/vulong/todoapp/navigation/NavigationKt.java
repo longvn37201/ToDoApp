@@ -6,6 +6,7 @@ import java.lang.System;
 public final class NavigationKt {
     
     @androidx.compose.runtime.Composable()
+    @kotlin.OptIn(markerClass = {androidx.compose.animation.ExperimentalAnimationApi.class})
     public static final void Navigation(@org.jetbrains.annotations.NotNull()
     vulong.todoapp.ui.viewmodels.SharedViewModel sharedViewModel) {
     }

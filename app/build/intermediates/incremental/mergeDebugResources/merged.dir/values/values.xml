@@ -521,6 +521,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
+    <color name="triangle_color">#FF0000</color>
     <color name="white">#FFFFFFFF</color>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_content_inset_with_nav">72dp</dimen>
@@ -1134,6 +1135,7 @@
     <string name="close_drawer">"Close navigation menu"</string>
     <string name="close_sheet">"Close sheet"</string>
     <string name="default_error_message">"Invalid input"</string>
+    <string name="default_popup_window_title" ns1:ignore="ExtraTranslation">"Pop-Up Window"</string>
     <string name="delete">Deleted</string>
     <string name="delete_action">delete action</string>
     <string name="delete_all_action">Delete all</string>
@@ -1141,6 +1143,7 @@
     <string name="delete_icon">delete icon</string>
     <string name="description">Description</string>
     <string name="drop_down_icon">drop down icon</string>
+    <string name="dropdown_menu">"Dropdown menu"</string>
     <string name="edit">Edit</string>
     <string name="empty_content">No tasks found.</string>
     <string name="error_icon_content_description">Error</string>

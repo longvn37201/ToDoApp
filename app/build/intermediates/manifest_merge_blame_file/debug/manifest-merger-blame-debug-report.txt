@@ -6,103 +6,106 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"
-8-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml
+8-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="31" />
-9-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml
+9-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml
 10
 11    <application
-11-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:5:5-24:19
+11-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:5:5-27:19
 12        android:name="vulong.todoapp.ToDoApplication"
-12-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:6:9-40
+12-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:6:9-40
 13        android:allowBackup="true"
-13-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:7:9-35
+13-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:7:9-35
 14        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 14-->[androidx.core:core:1.6.0] C:\Users\long\.gradle\caches\transforms-3\a57822c5da0d89ea7c00e42e049cf12d\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
 15        android:debuggable="true"
 16        android:extractNativeLibs="false"
-17        android:icon="@mipmap/ic_logo_app"
-17-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:8:9-43
-18        android:label="@string/app_name"
-18-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:9:9-41
-19        android:roundIcon="@mipmap/ic_logo_app_round"
-19-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:10:9-54
-20        android:supportsRtl="true"
-20-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:11:9-35
-21        android:testOnly="true"
+17        android:fullBackupContent="true"
+17-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:8:9-41
+18        android:icon="@mipmap/ic_logo_app"
+18-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:9:9-43
+19        android:label="@string/app_name"
+19-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:10:9-41
+20        android:roundIcon="@mipmap/ic_logo_app_round"
+20-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:11:9-54
+21        android:supportsRtl="true"
+21-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:12:9-35
 22        android:theme="@style/Theme.ToDoApp" >
-22-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:12:9-45
+22-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:13:9-45
 23        <activity
-23-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:13:9-23:20
+23-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:15:9-26:20
 24            android:name="vulong.todoapp.MainActivity"
-24-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:14:13-41
+24-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:17:13-41
 25            android:exported="true"
-25-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:15:13-36
+25-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:18:13-36
 26            android:label="@string/app_name"
-26-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:16:13-45
-27            android:theme="@style/Theme.ToDoApp.NoActionBar" >
-27-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:17:13-61
-28            <intent-filter>
-28-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:18:13-22:29
-29                <action android:name="android.intent.action.MAIN" />
-29-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:19:17-69
-29-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:19:25-66
-30
-31                <category android:name="android.intent.category.LAUNCHER" />
-31-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:21:17-77
-31-->C:\Users\long\Desktop\ANDROID WORKSPACE\ToDoApp\app\src\main\AndroidManifest.xml:21:27-74
-32            </intent-filter>
-33        </activity>
-34        <activity
-34-->[androidx.compose.ui:ui-tooling:1.0.1] C:\Users\long\.gradle\caches\transforms-3\f44c54bb08990873fbef06793a479458\transformed\jetified-ui-tooling-1.0.1\AndroidManifest.xml:25:9-27:39
-35            android:name="androidx.compose.ui.tooling.PreviewActivity"
-35-->[androidx.compose.ui:ui-tooling:1.0.1] C:\Users\long\.gradle\caches\transforms-3\f44c54bb08990873fbef06793a479458\transformed\jetified-ui-tooling-1.0.1\AndroidManifest.xml:26:13-71
-36            android:exported="true" />
-36-->[androidx.compose.ui:ui-tooling:1.0.1] C:\Users\long\.gradle\caches\transforms-3\f44c54bb08990873fbef06793a479458\transformed\jetified-ui-tooling-1.0.1\AndroidManifest.xml:27:13-36
-37
-38        <service
-38-->[androidx.room:room-runtime:2.3.0] C:\Users\long\.gradle\caches\transforms-3\271c3288680bf60ecf8f50dbd2f05441\transformed\room-runtime-2.3.0\AndroidManifest.xml:25:9-28:40
-39            android:name="androidx.room.MultiInstanceInvalidationService"
-39-->[androidx.room:room-runtime:2.3.0] C:\Users\long\.gradle\caches\transforms-3\271c3288680bf60ecf8f50dbd2f05441\transformed\room-runtime-2.3.0\AndroidManifest.xml:26:13-74
-40            android:directBootAware="true"
-40-->[androidx.room:room-runtime:2.3.0] C:\Users\long\.gradle\caches\transforms-3\271c3288680bf60ecf8f50dbd2f05441\transformed\room-runtime-2.3.0\AndroidManifest.xml:27:13-43
-41            android:exported="false" />
-41-->[androidx.room:room-runtime:2.3.0] C:\Users\long\.gradle\caches\transforms-3\271c3288680bf60ecf8f50dbd2f05441\transformed\room-runtime-2.3.0\AndroidManifest.xml:28:13-37
-42
-43        <provider
-43-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:26:9-34:20
-44            android:name="androidx.startup.InitializationProvider"
-44-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:27:13-67
-45            android:authorities="vulong.todoapp.androidx-startup"
-45-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:28:13-68
-46            android:exported="false" >
-46-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:29:13-37
-47            <meta-data
-47-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:31:13-33:52
-48                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-48-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:32:17-85
-49                android:value="androidx.startup" />
-49-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:33:17-49
-50        </provider>
-51
-52        <receiver
-52-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:36:9-45:20
-53            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-53-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:37:13-76
-54            android:directBootAware="false"
-54-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:38:13-44
-55            android:enabled="true"
-55-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:39:13-35
-56            android:exported="true"
-56-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:40:13-36
-57            android:permission="android.permission.DUMP" >
-57-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:41:13-57
-58            <intent-filter>
-58-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:42:13-44:29
-59                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-59-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:43:17-91
-59-->[androidx.profileinstaller:profileinstaller:1.0.1] C:\Users\long\.gradle\caches\transforms-3\3273479fc227971201edf4ffabc9e8fc\transformed\jetified-profileinstaller-1.0.1\AndroidManifest.xml:43:25-88
-60            </intent-filter>
-61        </receiver>
-62    </application>
-63
-64</manifest>
+26-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:19:13-45
+27            android:theme="@style/Theme.ToDoApp.NoActionBar"
+27-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:20:13-61
+28            android:windowSoftInputMode="adjustResize" >
+28-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:16:13-55
+29            <intent-filter>
+29-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:21:13-25:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:22:17-69
+30-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:22:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:24:17-77
+32-->C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:24:27-74
+33            </intent-filter>
+34        </activity>
+35        <activity
+35-->[androidx.compose.ui:ui-tooling:1.0.1] C:\Users\long\.gradle\caches\transforms-3\f44c54bb08990873fbef06793a479458\transformed\jetified-ui-tooling-1.0.1\AndroidManifest.xml:25:9-27:39
+36            android:name="androidx.compose.ui.tooling.PreviewActivity"
+36-->[androidx.compose.ui:ui-tooling:1.0.1] C:\Users\long\.gradle\caches\transforms-3\f44c54bb08990873fbef06793a479458\transformed\jetified-ui-tooling-1.0.1\AndroidManifest.xml:26:13-71
+37            android:exported="true" />
+37-->[androidx.compose.ui:ui-tooling:1.0.1] C:\Users\long\.gradle\caches\transforms-3\f44c54bb08990873fbef06793a479458\transformed\jetified-ui-tooling-1.0.1\AndroidManifest.xml:27:13-36
+38
+39        <service
+39-->[androidx.room:room-runtime:2.3.0] C:\Users\long\.gradle\caches\transforms-3\271c3288680bf60ecf8f50dbd2f05441\transformed\room-runtime-2.3.0\AndroidManifest.xml:25:9-28:40
+40            android:name="androidx.room.MultiInstanceInvalidationService"
+40-->[androidx.room:room-runtime:2.3.0] C:\Users\long\.gradle\caches\transforms-3\271c3288680bf60ecf8f50dbd2f05441\transformed\room-runtime-2.3.0\AndroidManifest.xml:26:13-74
+41            android:directBootAware="true"
+41-->[androidx.room:room-runtime:2.3.0] C:\Users\long\.gradle\caches\transforms-3\271c3288680bf60ecf8f50dbd2f05441\transformed\room-runtime-2.3.0\AndroidManifest.xml:27:13-43
+42            android:exported="false" />
+42-->[androidx.room:room-runtime:2.3.0] C:\Users\long\.gradle\caches\transforms-3\271c3288680bf60ecf8f50dbd2f05441\transformed\room-runtime-2.3.0\AndroidManifest.xml:28:13-37
+43
+44        <provider
+44-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:26:9-34:20
+45            android:name="androidx.startup.InitializationProvider"
+45-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:27:13-67
+46            android:authorities="vulong.todoapp.androidx-startup"
+46-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:28:13-68
+47            android:exported="false" >
+47-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:29:13-37
+48            <meta-data
+48-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:31:13-33:52
+49                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+49-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:32:17-85
+50                android:value="androidx.startup" />
+50-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:33:17-49
+51        </provider>
+52
+53        <receiver
+53-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:36:9-45:20
+54            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+54-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:37:13-76
+55            android:directBootAware="false"
+55-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:38:13-44
+56            android:enabled="true"
+56-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:39:13-35
+57            android:exported="true"
+57-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:40:13-36
+58            android:permission="android.permission.DUMP" >
+58-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:41:13-57
+59            <intent-filter>
+59-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:42:13-44:29
+60                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+60-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:43:17-91
+60-->[androidx.profileinstaller:profileinstaller:1.1.0-rc01] C:\Users\long\.gradle\caches\transforms-3\2278b4a70ec34be5f35046907682f54f\transformed\jetified-profileinstaller-1.1.0-rc01\AndroidManifest.xml:43:25-88
+61            </intent-filter>
+62        </receiver>
+63    </application>
+64
+65</manifest>
