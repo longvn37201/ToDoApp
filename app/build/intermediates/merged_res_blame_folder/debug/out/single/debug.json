@@ -8,6 +8,10 @@
         "source": "C:\\Users\\long\\Desktop\\AndroidWorkSpace\\ToDoApp\\app\\src\\main\\res\\mipmap-hdpi\\ic_logo_app.png"
     },
     {
+        "merged": "C:\\Users\\long\\Desktop\\AndroidWorkSpace\\ToDoApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_alarm.xml.flat",
+        "source": "C:\\Users\\long\\Desktop\\AndroidWorkSpace\\ToDoApp\\app\\src\\main\\res\\drawable\\ic_alarm.xml"
+    },
+    {
         "merged": "C:\\Users\\long\\Desktop\\AndroidWorkSpace\\ToDoApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_logo_app_round.png.flat",
         "source": "C:\\Users\\long\\Desktop\\AndroidWorkSpace\\ToDoApp\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_logo_app_round.png"
     },
@@ -26,6 +30,10 @@
     {
         "merged": "C:\\Users\\long\\Desktop\\AndroidWorkSpace\\ToDoApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_logo_app.png.flat",
         "source": "C:\\Users\\long\\Desktop\\AndroidWorkSpace\\ToDoApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_logo_app.png"
+    },
+    {
+        "merged": "C:\\Users\\long\\Desktop\\AndroidWorkSpace\\ToDoApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_add_alarm.xml.flat",
+        "source": "C:\\Users\\long\\Desktop\\AndroidWorkSpace\\ToDoApp\\app\\src\\main\\res\\drawable\\ic_add_alarm.xml"
     },
     {
         "merged": "C:\\Users\\long\\Desktop\\AndroidWorkSpace\\ToDoApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_logo_app_foreground.xml.flat",

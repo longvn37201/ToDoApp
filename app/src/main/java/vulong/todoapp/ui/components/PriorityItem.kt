@@ -17,8 +17,9 @@ import vulong.todoapp.ui.theme.PRIORITY_INDICATOR_SIZE
 import vulong.todoapp.ui.theme.Typography
 
 @Composable
-fun PriorityItem(priority: Priority) {
+fun PriorityItem(modifier: Modifier = Modifier, priority: Priority) {
     Row(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Canvas(

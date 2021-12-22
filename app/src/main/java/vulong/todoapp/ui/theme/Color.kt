@@ -12,6 +12,7 @@ val Teal200 = Color(0xFF03DAC5)
 val LightGray = Color(0xFFFCFCFC)
 val MediumGray = Color(0xFF9C9C9C)
 val DarkGray = Color(0xFF141414)
+val ReminderTimeStampBackground=Color(0xFFA2A2A2)
 
 val LowPriorityColor = Color(0xFF00C980)
 val MediumPriorityColor = Color(0xFFFFC114)

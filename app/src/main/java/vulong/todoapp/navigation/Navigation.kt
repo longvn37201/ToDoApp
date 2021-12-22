@@ -87,10 +87,10 @@ fun Navigation(
                 navArgument(Constants.TASK_ARGUMENT_KEY) { type = NavType.IntType }
             ),
             enterTransition = {
-                slideInHorizontally(animationSpec = tween(700), initialOffsetX = { it })
+                slideInHorizontally(animationSpec = tween(300), initialOffsetX = { it })
             },
             exitTransition = {
-                slideOutHorizontally(animationSpec = tween(700), targetOffsetX = { it })
+                slideOutHorizontally(animationSpec = tween(300), targetOffsetX = { it })
             }
         ) { navBackStackEntry ->
             val taskIndex = navBackStackEntry.arguments?.getInt(Constants.TASK_ARGUMENT_KEY)

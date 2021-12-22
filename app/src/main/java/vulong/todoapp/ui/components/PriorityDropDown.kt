@@ -35,10 +35,8 @@ fun PriorityDropDown(
         targetValue = if (isExpanded) 180f else 0f
     )
 
-
     Row(
         modifier = Modifier
-            .fillMaxWidth()
             .background(MaterialTheme.colors.background)
             .height(PRIORITY_DROP_DOWN_HEIGHT)
             .clickable {
@@ -58,7 +56,7 @@ fun PriorityDropDown(
             onDraw = { drawCircle(priority.color) }
         )
         Text(
-            modifier = Modifier.weight(8f),
+            modifier = Modifier.weight(2f),
             text = priority.name,
             style = MaterialTheme.typography.subtitle2,
             color = MaterialTheme.colors.onBackground,
@@ -68,7 +66,7 @@ fun PriorityDropDown(
             modifier = Modifier
                 .alpha(ContentAlpha.medium)
                 .rotate(angle)
-                .weight(1.5f)
+                .weight(1f)
         ) {
             Icon(
                 imageVector = Icons.Filled.ArrowDropDown,
@@ -78,9 +76,8 @@ fun PriorityDropDown(
         }
 
         DropdownMenu(
-            modifier = Modifier.fillMaxWidth(
-                fraction = 0.95f
-            ),
+            modifier = Modifier
+                .fillMaxWidth(0.45f),
             expanded = isExpanded,
             onDismissRequest = { isExpanded = false },
         ) {
