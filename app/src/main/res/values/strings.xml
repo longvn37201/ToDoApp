@@ -31,4 +31,6 @@
     <string name="undo">UNDO</string>
     <string name="sort_by_most_recent">Sort by most recent</string>
     <string name="sort_by_priority">Sort by priority</string>
+    <string name="add_reminder">Add reminder</string>
+    <string name="date_has_passed">The date has passed</string>
 </resources>

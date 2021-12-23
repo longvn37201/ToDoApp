@@ -33,9 +33,9 @@ public final class ToDoDatabase_Impl extends ToDoDatabase {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `todo_table` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `priority` TEXT NOT NULL)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `todo_table` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `priority` TEXT NOT NULL, `isSetReminder` INTEGER NOT NULL, `year` INTEGER, `month` INTEGER, `day` INTEGER, `hour` INTEGER, `minute` INTEGER)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '781090ad754652e66b310a1c75bd7716')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f6382dfb61777860e22d905b7244c2c9')");
       }
 
       @Override
@@ -79,11 +79,17 @@ public final class ToDoDatabase_Impl extends ToDoDatabase {
 
       @Override
       protected RoomOpenHelper.ValidationResult onValidateSchema(SupportSQLiteDatabase _db) {
-        final HashMap<String, TableInfo.Column> _columnsTodoTable = new HashMap<String, TableInfo.Column>(4);
+        final HashMap<String, TableInfo.Column> _columnsTodoTable = new HashMap<String, TableInfo.Column>(10);
         _columnsTodoTable.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTodoTable.put("title", new TableInfo.Column("title", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTodoTable.put("description", new TableInfo.Column("description", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTodoTable.put("priority", new TableInfo.Column("priority", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTodoTable.put("isSetReminder", new TableInfo.Column("isSetReminder", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTodoTable.put("year", new TableInfo.Column("year", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTodoTable.put("month", new TableInfo.Column("month", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTodoTable.put("day", new TableInfo.Column("day", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTodoTable.put("hour", new TableInfo.Column("hour", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTodoTable.put("minute", new TableInfo.Column("minute", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysTodoTable = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesTodoTable = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoTodoTable = new TableInfo("todo_table", _columnsTodoTable, _foreignKeysTodoTable, _indicesTodoTable);
@@ -95,7 +101,7 @@ public final class ToDoDatabase_Impl extends ToDoDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "781090ad754652e66b310a1c75bd7716", "b4b1a5b28a427c916c1f38c3503056ec");
+    }, "f6382dfb61777860e22d905b7244c2c9", "6c64ffe108dee9ef22c38a37ada161d9");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)

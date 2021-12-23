@@ -13,6 +13,7 @@ import androidx.sqlite.db.SupportSQLiteStatement;
 import java.lang.Class;
 import java.lang.Exception;
 import java.lang.IllegalArgumentException;
+import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -44,7 +45,7 @@ public final class ToDoDao_Impl implements ToDoDao {
     this.__insertionAdapterOfToDoTask = new EntityInsertionAdapter<ToDoTask>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR IGNORE INTO `todo_table` (`id`,`title`,`description`,`priority`) VALUES (nullif(?, 0),?,?,?)";
+        return "INSERT OR IGNORE INTO `todo_table` (`id`,`title`,`description`,`priority`,`isSetReminder`,`year`,`month`,`day`,`hour`,`minute`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -64,6 +65,34 @@ public final class ToDoDao_Impl implements ToDoDao {
           stmt.bindNull(4);
         } else {
           stmt.bindString(4, __Priority_enumToString(value.getPriority()));
+        }
+        final int _tmp;
+        _tmp = value.isSetReminder() ? 1 : 0;
+        stmt.bindLong(5, _tmp);
+        if (value.getYear() == null) {
+          stmt.bindNull(6);
+        } else {
+          stmt.bindLong(6, value.getYear());
+        }
+        if (value.getMonth() == null) {
+          stmt.bindNull(7);
+        } else {
+          stmt.bindLong(7, value.getMonth());
+        }
+        if (value.getDay() == null) {
+          stmt.bindNull(8);
+        } else {
+          stmt.bindLong(8, value.getDay());
+        }
+        if (value.getHour() == null) {
+          stmt.bindNull(9);
+        } else {
+          stmt.bindLong(9, value.getHour());
+        }
+        if (value.getMinute() == null) {
+          stmt.bindNull(10);
+        } else {
+          stmt.bindLong(10, value.getMinute());
         }
       }
     };
@@ -81,7 +110,7 @@ public final class ToDoDao_Impl implements ToDoDao {
     this.__updateAdapterOfToDoTask = new EntityDeletionOrUpdateAdapter<ToDoTask>(__db) {
       @Override
       public String createQuery() {
-        return "UPDATE OR ABORT `todo_table` SET `id` = ?,`title` = ?,`description` = ?,`priority` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `todo_table` SET `id` = ?,`title` = ?,`description` = ?,`priority` = ?,`isSetReminder` = ?,`year` = ?,`month` = ?,`day` = ?,`hour` = ?,`minute` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -102,7 +131,35 @@ public final class ToDoDao_Impl implements ToDoDao {
         } else {
           stmt.bindString(4, __Priority_enumToString(value.getPriority()));
         }
-        stmt.bindLong(5, value.getId());
+        final int _tmp;
+        _tmp = value.isSetReminder() ? 1 : 0;
+        stmt.bindLong(5, _tmp);
+        if (value.getYear() == null) {
+          stmt.bindNull(6);
+        } else {
+          stmt.bindLong(6, value.getYear());
+        }
+        if (value.getMonth() == null) {
+          stmt.bindNull(7);
+        } else {
+          stmt.bindLong(7, value.getMonth());
+        }
+        if (value.getDay() == null) {
+          stmt.bindNull(8);
+        } else {
+          stmt.bindLong(8, value.getDay());
+        }
+        if (value.getHour() == null) {
+          stmt.bindNull(9);
+        } else {
+          stmt.bindLong(9, value.getHour());
+        }
+        if (value.getMinute() == null) {
+          stmt.bindNull(10);
+        } else {
+          stmt.bindLong(10, value.getMinute());
+        }
+        stmt.bindLong(11, value.getId());
       }
     };
     this.__preparedStmtOfDeleteAllTask = new SharedSQLiteStatement(__db) {
@@ -199,6 +256,12 @@ public final class ToDoDao_Impl implements ToDoDao {
           final int _cursorIndexOfTitle = CursorUtil.getColumnIndexOrThrow(_cursor, "title");
           final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
           final int _cursorIndexOfPriority = CursorUtil.getColumnIndexOrThrow(_cursor, "priority");
+          final int _cursorIndexOfIsSetReminder = CursorUtil.getColumnIndexOrThrow(_cursor, "isSetReminder");
+          final int _cursorIndexOfYear = CursorUtil.getColumnIndexOrThrow(_cursor, "year");
+          final int _cursorIndexOfMonth = CursorUtil.getColumnIndexOrThrow(_cursor, "month");
+          final int _cursorIndexOfDay = CursorUtil.getColumnIndexOrThrow(_cursor, "day");
+          final int _cursorIndexOfHour = CursorUtil.getColumnIndexOrThrow(_cursor, "hour");
+          final int _cursorIndexOfMinute = CursorUtil.getColumnIndexOrThrow(_cursor, "minute");
           final ToDoTask _result;
           if(_cursor.moveToFirst()) {
             final int _tmpId;
@@ -217,7 +280,41 @@ public final class ToDoDao_Impl implements ToDoDao {
             }
             final Priority _tmpPriority;
             _tmpPriority = __Priority_stringToEnum(_cursor.getString(_cursorIndexOfPriority));
-            _result = new ToDoTask(_tmpId,_tmpTitle,_tmpDescription,_tmpPriority);
+            final boolean _tmpIsSetReminder;
+            final int _tmp;
+            _tmp = _cursor.getInt(_cursorIndexOfIsSetReminder);
+            _tmpIsSetReminder = _tmp != 0;
+            final Integer _tmpYear;
+            if (_cursor.isNull(_cursorIndexOfYear)) {
+              _tmpYear = null;
+            } else {
+              _tmpYear = _cursor.getInt(_cursorIndexOfYear);
+            }
+            final Integer _tmpMonth;
+            if (_cursor.isNull(_cursorIndexOfMonth)) {
+              _tmpMonth = null;
+            } else {
+              _tmpMonth = _cursor.getInt(_cursorIndexOfMonth);
+            }
+            final Integer _tmpDay;
+            if (_cursor.isNull(_cursorIndexOfDay)) {
+              _tmpDay = null;
+            } else {
+              _tmpDay = _cursor.getInt(_cursorIndexOfDay);
+            }
+            final Integer _tmpHour;
+            if (_cursor.isNull(_cursorIndexOfHour)) {
+              _tmpHour = null;
+            } else {
+              _tmpHour = _cursor.getInt(_cursorIndexOfHour);
+            }
+            final Integer _tmpMinute;
+            if (_cursor.isNull(_cursorIndexOfMinute)) {
+              _tmpMinute = null;
+            } else {
+              _tmpMinute = _cursor.getInt(_cursorIndexOfMinute);
+            }
+            _result = new ToDoTask(_tmpId,_tmpTitle,_tmpDescription,_tmpPriority,_tmpIsSetReminder,_tmpYear,_tmpMonth,_tmpDay,_tmpHour,_tmpMinute);
           } else {
             _result = null;
           }
@@ -247,6 +344,12 @@ public final class ToDoDao_Impl implements ToDoDao {
           final int _cursorIndexOfTitle = CursorUtil.getColumnIndexOrThrow(_cursor, "title");
           final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
           final int _cursorIndexOfPriority = CursorUtil.getColumnIndexOrThrow(_cursor, "priority");
+          final int _cursorIndexOfIsSetReminder = CursorUtil.getColumnIndexOrThrow(_cursor, "isSetReminder");
+          final int _cursorIndexOfYear = CursorUtil.getColumnIndexOrThrow(_cursor, "year");
+          final int _cursorIndexOfMonth = CursorUtil.getColumnIndexOrThrow(_cursor, "month");
+          final int _cursorIndexOfDay = CursorUtil.getColumnIndexOrThrow(_cursor, "day");
+          final int _cursorIndexOfHour = CursorUtil.getColumnIndexOrThrow(_cursor, "hour");
+          final int _cursorIndexOfMinute = CursorUtil.getColumnIndexOrThrow(_cursor, "minute");
           final List<ToDoTask> _result = new ArrayList<ToDoTask>(_cursor.getCount());
           while(_cursor.moveToNext()) {
             final ToDoTask _item;
@@ -266,7 +369,41 @@ public final class ToDoDao_Impl implements ToDoDao {
             }
             final Priority _tmpPriority;
             _tmpPriority = __Priority_stringToEnum(_cursor.getString(_cursorIndexOfPriority));
-            _item = new ToDoTask(_tmpId,_tmpTitle,_tmpDescription,_tmpPriority);
+            final boolean _tmpIsSetReminder;
+            final int _tmp;
+            _tmp = _cursor.getInt(_cursorIndexOfIsSetReminder);
+            _tmpIsSetReminder = _tmp != 0;
+            final Integer _tmpYear;
+            if (_cursor.isNull(_cursorIndexOfYear)) {
+              _tmpYear = null;
+            } else {
+              _tmpYear = _cursor.getInt(_cursorIndexOfYear);
+            }
+            final Integer _tmpMonth;
+            if (_cursor.isNull(_cursorIndexOfMonth)) {
+              _tmpMonth = null;
+            } else {
+              _tmpMonth = _cursor.getInt(_cursorIndexOfMonth);
+            }
+            final Integer _tmpDay;
+            if (_cursor.isNull(_cursorIndexOfDay)) {
+              _tmpDay = null;
+            } else {
+              _tmpDay = _cursor.getInt(_cursorIndexOfDay);
+            }
+            final Integer _tmpHour;
+            if (_cursor.isNull(_cursorIndexOfHour)) {
+              _tmpHour = null;
+            } else {
+              _tmpHour = _cursor.getInt(_cursorIndexOfHour);
+            }
+            final Integer _tmpMinute;
+            if (_cursor.isNull(_cursorIndexOfMinute)) {
+              _tmpMinute = null;
+            } else {
+              _tmpMinute = _cursor.getInt(_cursorIndexOfMinute);
+            }
+            _item = new ToDoTask(_tmpId,_tmpTitle,_tmpDescription,_tmpPriority,_tmpIsSetReminder,_tmpYear,_tmpMonth,_tmpDay,_tmpHour,_tmpMinute);
             _result.add(_item);
           }
           return _result;
@@ -295,6 +432,12 @@ public final class ToDoDao_Impl implements ToDoDao {
           final int _cursorIndexOfTitle = CursorUtil.getColumnIndexOrThrow(_cursor, "title");
           final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
           final int _cursorIndexOfPriority = CursorUtil.getColumnIndexOrThrow(_cursor, "priority");
+          final int _cursorIndexOfIsSetReminder = CursorUtil.getColumnIndexOrThrow(_cursor, "isSetReminder");
+          final int _cursorIndexOfYear = CursorUtil.getColumnIndexOrThrow(_cursor, "year");
+          final int _cursorIndexOfMonth = CursorUtil.getColumnIndexOrThrow(_cursor, "month");
+          final int _cursorIndexOfDay = CursorUtil.getColumnIndexOrThrow(_cursor, "day");
+          final int _cursorIndexOfHour = CursorUtil.getColumnIndexOrThrow(_cursor, "hour");
+          final int _cursorIndexOfMinute = CursorUtil.getColumnIndexOrThrow(_cursor, "minute");
           final List<ToDoTask> _result = new ArrayList<ToDoTask>(_cursor.getCount());
           while(_cursor.moveToNext()) {
             final ToDoTask _item;
@@ -314,7 +457,41 @@ public final class ToDoDao_Impl implements ToDoDao {
             }
             final Priority _tmpPriority;
             _tmpPriority = __Priority_stringToEnum(_cursor.getString(_cursorIndexOfPriority));
-            _item = new ToDoTask(_tmpId,_tmpTitle,_tmpDescription,_tmpPriority);
+            final boolean _tmpIsSetReminder;
+            final int _tmp;
+            _tmp = _cursor.getInt(_cursorIndexOfIsSetReminder);
+            _tmpIsSetReminder = _tmp != 0;
+            final Integer _tmpYear;
+            if (_cursor.isNull(_cursorIndexOfYear)) {
+              _tmpYear = null;
+            } else {
+              _tmpYear = _cursor.getInt(_cursorIndexOfYear);
+            }
+            final Integer _tmpMonth;
+            if (_cursor.isNull(_cursorIndexOfMonth)) {
+              _tmpMonth = null;
+            } else {
+              _tmpMonth = _cursor.getInt(_cursorIndexOfMonth);
+            }
+            final Integer _tmpDay;
+            if (_cursor.isNull(_cursorIndexOfDay)) {
+              _tmpDay = null;
+            } else {
+              _tmpDay = _cursor.getInt(_cursorIndexOfDay);
+            }
+            final Integer _tmpHour;
+            if (_cursor.isNull(_cursorIndexOfHour)) {
+              _tmpHour = null;
+            } else {
+              _tmpHour = _cursor.getInt(_cursorIndexOfHour);
+            }
+            final Integer _tmpMinute;
+            if (_cursor.isNull(_cursorIndexOfMinute)) {
+              _tmpMinute = null;
+            } else {
+              _tmpMinute = _cursor.getInt(_cursorIndexOfMinute);
+            }
+            _item = new ToDoTask(_tmpId,_tmpTitle,_tmpDescription,_tmpPriority,_tmpIsSetReminder,_tmpYear,_tmpMonth,_tmpDay,_tmpHour,_tmpMinute);
             _result.add(_item);
           }
           return _result;
@@ -343,6 +520,12 @@ public final class ToDoDao_Impl implements ToDoDao {
           final int _cursorIndexOfTitle = CursorUtil.getColumnIndexOrThrow(_cursor, "title");
           final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
           final int _cursorIndexOfPriority = CursorUtil.getColumnIndexOrThrow(_cursor, "priority");
+          final int _cursorIndexOfIsSetReminder = CursorUtil.getColumnIndexOrThrow(_cursor, "isSetReminder");
+          final int _cursorIndexOfYear = CursorUtil.getColumnIndexOrThrow(_cursor, "year");
+          final int _cursorIndexOfMonth = CursorUtil.getColumnIndexOrThrow(_cursor, "month");
+          final int _cursorIndexOfDay = CursorUtil.getColumnIndexOrThrow(_cursor, "day");
+          final int _cursorIndexOfHour = CursorUtil.getColumnIndexOrThrow(_cursor, "hour");
+          final int _cursorIndexOfMinute = CursorUtil.getColumnIndexOrThrow(_cursor, "minute");
           final List<ToDoTask> _result = new ArrayList<ToDoTask>(_cursor.getCount());
           while(_cursor.moveToNext()) {
             final ToDoTask _item;
@@ -362,7 +545,41 @@ public final class ToDoDao_Impl implements ToDoDao {
             }
             final Priority _tmpPriority;
             _tmpPriority = __Priority_stringToEnum(_cursor.getString(_cursorIndexOfPriority));
-            _item = new ToDoTask(_tmpId,_tmpTitle,_tmpDescription,_tmpPriority);
+            final boolean _tmpIsSetReminder;
+            final int _tmp;
+            _tmp = _cursor.getInt(_cursorIndexOfIsSetReminder);
+            _tmpIsSetReminder = _tmp != 0;
+            final Integer _tmpYear;
+            if (_cursor.isNull(_cursorIndexOfYear)) {
+              _tmpYear = null;
+            } else {
+              _tmpYear = _cursor.getInt(_cursorIndexOfYear);
+            }
+            final Integer _tmpMonth;
+            if (_cursor.isNull(_cursorIndexOfMonth)) {
+              _tmpMonth = null;
+            } else {
+              _tmpMonth = _cursor.getInt(_cursorIndexOfMonth);
+            }
+            final Integer _tmpDay;
+            if (_cursor.isNull(_cursorIndexOfDay)) {
+              _tmpDay = null;
+            } else {
+              _tmpDay = _cursor.getInt(_cursorIndexOfDay);
+            }
+            final Integer _tmpHour;
+            if (_cursor.isNull(_cursorIndexOfHour)) {
+              _tmpHour = null;
+            } else {
+              _tmpHour = _cursor.getInt(_cursorIndexOfHour);
+            }
+            final Integer _tmpMinute;
+            if (_cursor.isNull(_cursorIndexOfMinute)) {
+              _tmpMinute = null;
+            } else {
+              _tmpMinute = _cursor.getInt(_cursorIndexOfMinute);
+            }
+            _item = new ToDoTask(_tmpId,_tmpTitle,_tmpDescription,_tmpPriority,_tmpIsSetReminder,_tmpYear,_tmpMonth,_tmpDay,_tmpHour,_tmpMinute);
             _result.add(_item);
           }
           return _result;
@@ -403,6 +620,12 @@ public final class ToDoDao_Impl implements ToDoDao {
           final int _cursorIndexOfTitle = CursorUtil.getColumnIndexOrThrow(_cursor, "title");
           final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
           final int _cursorIndexOfPriority = CursorUtil.getColumnIndexOrThrow(_cursor, "priority");
+          final int _cursorIndexOfIsSetReminder = CursorUtil.getColumnIndexOrThrow(_cursor, "isSetReminder");
+          final int _cursorIndexOfYear = CursorUtil.getColumnIndexOrThrow(_cursor, "year");
+          final int _cursorIndexOfMonth = CursorUtil.getColumnIndexOrThrow(_cursor, "month");
+          final int _cursorIndexOfDay = CursorUtil.getColumnIndexOrThrow(_cursor, "day");
+          final int _cursorIndexOfHour = CursorUtil.getColumnIndexOrThrow(_cursor, "hour");
+          final int _cursorIndexOfMinute = CursorUtil.getColumnIndexOrThrow(_cursor, "minute");
           final List<ToDoTask> _result = new ArrayList<ToDoTask>(_cursor.getCount());
           while(_cursor.moveToNext()) {
             final ToDoTask _item;
@@ -422,7 +645,41 @@ public final class ToDoDao_Impl implements ToDoDao {
             }
             final Priority _tmpPriority;
             _tmpPriority = __Priority_stringToEnum(_cursor.getString(_cursorIndexOfPriority));
-            _item = new ToDoTask(_tmpId,_tmpTitle,_tmpDescription,_tmpPriority);
+            final boolean _tmpIsSetReminder;
+            final int _tmp;
+            _tmp = _cursor.getInt(_cursorIndexOfIsSetReminder);
+            _tmpIsSetReminder = _tmp != 0;
+            final Integer _tmpYear;
+            if (_cursor.isNull(_cursorIndexOfYear)) {
+              _tmpYear = null;
+            } else {
+              _tmpYear = _cursor.getInt(_cursorIndexOfYear);
+            }
+            final Integer _tmpMonth;
+            if (_cursor.isNull(_cursorIndexOfMonth)) {
+              _tmpMonth = null;
+            } else {
+              _tmpMonth = _cursor.getInt(_cursorIndexOfMonth);
+            }
+            final Integer _tmpDay;
+            if (_cursor.isNull(_cursorIndexOfDay)) {
+              _tmpDay = null;
+            } else {
+              _tmpDay = _cursor.getInt(_cursorIndexOfDay);
+            }
+            final Integer _tmpHour;
+            if (_cursor.isNull(_cursorIndexOfHour)) {
+              _tmpHour = null;
+            } else {
+              _tmpHour = _cursor.getInt(_cursorIndexOfHour);
+            }
+            final Integer _tmpMinute;
+            if (_cursor.isNull(_cursorIndexOfMinute)) {
+              _tmpMinute = null;
+            } else {
+              _tmpMinute = _cursor.getInt(_cursorIndexOfMinute);
+            }
+            _item = new ToDoTask(_tmpId,_tmpTitle,_tmpDescription,_tmpPriority,_tmpIsSetReminder,_tmpYear,_tmpMonth,_tmpDay,_tmpHour,_tmpMinute);
             _result.add(_item);
           }
           return _result;

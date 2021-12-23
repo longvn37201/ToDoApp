@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-29:12
+ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-30:12
 MERGED from [com.google.accompanist:accompanist-navigation-animation:0.22.0-rc] C:\Users\long\.gradle\caches\transforms-3\88c215e040326ad8aee66c3aae854310\transformed\jetified-accompanist-navigation-animation-0.22.0-rc\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.compose.ui:ui-tooling:1.0.1] C:\Users\long\.gradle\caches\transforms-3\f44c54bb08990873fbef06793a479458\transformed\jetified-ui-tooling-1.0.1\AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.hilt:hilt-navigation-compose:1.0.0-alpha03] C:\Users\long\.gradle\caches\transforms-3\f1cbd07390daea6fea36ae5aa3cc81e5\transformed\jetified-hilt-navigation-compose-1.0.0-alpha03\AndroidManifest.xml:17:1-24:12
@@ -83,25 +83,25 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\long\.gradle\cache
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\long\.gradle\caches\transforms-3\744509c9e35f2f0f17f8940140cba99f\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\long\.gradle\caches\transforms-3\f7b3b8356c6453ddb2ef98e3c6781a06\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.dagger:dagger-lint-aar:2.38.1] C:\Users\long\.gradle\caches\transforms-3\9ef10178ede4d466f7fd2cb86f88adf3\transformed\jetified-dagger-lint-aar-2.38.1\AndroidManifest.xml:16:1-19:12
-INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-30:12
 	package
 		ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:3:5-29
 		INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-29:12
+		ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-30:12
 		INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-29:12
+		ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:1-30:12
 		INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:5:5-27:19
+ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:5:5-28:19
 MERGED from [androidx.compose.ui:ui-tooling:1.0.1] C:\Users\long\.gradle\caches\transforms-3\f44c54bb08990873fbef06793a479458\transformed\jetified-ui-tooling-1.0.1\AndroidManifest.xml:24:5-28:19
 MERGED from [androidx.compose.ui:ui-tooling:1.0.1] C:\Users\long\.gradle\caches\transforms-3\f44c54bb08990873fbef06793a479458\transformed\jetified-ui-tooling-1.0.1\AndroidManifest.xml:24:5-28:19
 MERGED from [com.google.android.material:material:1.4.0] C:\Users\long\.gradle\caches\transforms-3\ef9532358ef0a42d89699a11ddd8afa3\transformed\material-1.4.0\AndroidManifest.xml:22:5-20
@@ -158,6 +158,10 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:24:17-77
 	android:name
 		ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:24:27-74
+receiver#vulong.todoapp.util.ReminderBroadcast
+ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:27:9-60
+	android:name
+		ADDED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml:27:19-57
 uses-sdk
 INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\long\Desktop\AndroidWorkSpace\ToDoApp\app\src\main\AndroidManifest.xml

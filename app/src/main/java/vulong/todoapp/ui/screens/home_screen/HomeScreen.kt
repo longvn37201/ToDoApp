@@ -18,6 +18,12 @@ fun HomeScreen(
     sharedViewModel: SharedViewModel
 ) {
 
+    LaunchedEffect(key1 = true, block = {
+        if (sharedViewModel.isLaunchFromNotification) {
+            navigateToTaskScreen(sharedViewModel.idFromNotification)
+        }
+    })
+
     val scaffoldState = rememberScaffoldState()
     if (sharedViewModel.snackBarDetail != null) {
         CustomSnackBar(
@@ -93,7 +99,9 @@ fun CustomSnackBar(
 ) {
     LaunchedEffect(key1 = true) {
         val snackBarResult = scaffoldState.snackbarHostState.showSnackbar(
-            message = "Deleted a task!",
+            message = if (sharedViewModel.snackBarDetail?.title == "Deleted")
+                "Deleted a task!"
+            else "Deleted all task",
             actionLabel = sharedViewModel.snackBarDetail?.action,
         )
         when (snackBarResult) {

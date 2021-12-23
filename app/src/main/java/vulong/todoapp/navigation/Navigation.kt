@@ -27,8 +27,16 @@ import vulong.todoapp.util.Constants.TASK_SCREEN
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun Navigation(
+    idFromNotification: Int = -1,
     sharedViewModel: SharedViewModel = hiltViewModel()
 ) {
+
+    LaunchedEffect(key1 = true, block = {
+        if(idFromNotification!=-1){
+            sharedViewModel.isLaunchFromNotification = true
+            sharedViewModel.idFromNotification = idFromNotification
+        }
+    })
 
     val navController = rememberAnimatedNavController()
 

@@ -2380,6 +2380,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string add_button
+string add_reminder
 string add_task_action
 string added
 string all_tasks
@@ -2397,6 +2398,7 @@ string clear_text_end_icon_content_description
 string close_action
 string close_drawer
 string close_sheet
+string date_has_passed
 string default_error_message
 string default_popup_window_title
 string delete
